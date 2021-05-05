@@ -18,7 +18,7 @@ public class Flock : MonoBehaviour
     void Update()
     {
         Bounds b = new Bounds(myManager.transform.position, myManager.swinLimits * 2);
-        if (b.Contains(transform.position))
+        if (!b.Contains(transform.position))
         {
             turning = true;
         }

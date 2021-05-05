@@ -247,10 +247,10 @@ MonoBehaviour:
   allFish: []
   swinLimits: {x: 5, y: 5, z: 5}
   goalPos: {x: 0, y: 0, z: 0}
-  minSpeed: 0.52
-  maxSpeed: 0.009
+  minSpeed: 0.81
+  maxSpeed: 0.68
   neighbourDistance: 1
-  rotationSpeed: 5
+  rotationSpeed: 2.5
 --- !u!4 &1240270551
 Transform:
   m_ObjectHideFlags: 0
