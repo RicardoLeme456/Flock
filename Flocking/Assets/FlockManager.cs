@@ -8,7 +8,7 @@ public class FlockManager : MonoBehaviour
     public int numFish = 20; //O numero de peixes
     public GameObject[] allFish; //A quantidade de peixes
     public Vector3 swinLimits = new Vector3(5, 5, 5); //O limite a qual o peixe irá nadar
-    public Vector3 goalPos;
+    public Vector3 goalPos; //Posição de meta
 
     [Header("Configurações do Cardume")]
     [Range(0.0f, 5.0f)] //Alcançe do peixe
@@ -24,7 +24,7 @@ public class FlockManager : MonoBehaviour
     void Start()
     {
         allFish = new GameObject[numFish]; //A quantidade de peixes que serão mostradas
-        for (int i = 0; i < numFish; i++)
+        for (int i = 0; i < numFish; i++) //Para numero de peixes que for adicionado
         {
             Vector3 pos = this.transform.position + new Vector3(Random.Range(-swinLimits.x, swinLimits.x), //O limite a qual o peixe vai percorrer através dos eixos x, y e z aleatóriamente
                                                                 Random.Range(-swinLimits.y, swinLimits.y),
@@ -32,7 +32,7 @@ public class FlockManager : MonoBehaviour
             allFish[i] = (GameObject)Instantiate(fishPrefab, pos, Quaternion.identity); //O clone a qual o obejeto sera criado
             allFish[i].GetComponent<Flock>().myManager = this; //Pegar a variavel do meu gerenciamento da classe Flock
         }
-        goalPos = this.transform.position;
+        goalPos = this.transform.position; //A posição de meta sofre uma mudança de posição
     }
 
     // Update is called once per frame
@@ -40,6 +40,6 @@ public class FlockManager : MonoBehaviour
     {
         goalPos = this.transform.position + new Vector3(Random.Range(-swinLimits.x, swinLimits.x), 
                                                         Random.Range(-swinLimits.y, swinLimits.y),
-                                                        Random.Range(-swinLimits.z, swinLimits.z));
+                                                        Random.Range(-swinLimits.z, swinLimits.z)); //O limite a qual o peixe vai percorrer através dos eixos x, y e z aleatóriamente
     }
 }

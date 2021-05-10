@@ -21,32 +21,32 @@ public class Flock : MonoBehaviour
         Bounds b = new Bounds(myManager.transform.position, myManager.swinLimits * 2);
 
         RaycastHit hit = new RaycastHit(); //O raio a ser atingido
-        Vector3 direction = myManager.transform.position - transform.position;
+        Vector3 direction = myManager.transform.position - transform.position; //A direção por onde os cardume irão percorrer
 
-        if (!b.Contains(transform.position))
+        if (!b.Contains(transform.position)) //Se o limite não conter o transform.position
         {
-            turning = true;
-            direction = myManager.transform.position - transform.position;
+            turning = true; //O giro do cardume se tornará verdadeiro
+            direction = myManager.transform.position - transform.position; //E com isso ocorrerá a mudança de posição
         }
-        else if(Physics.Raycast(transform.position, this.transform.forward * 50, out hit))
+        else if(Physics.Raycast(transform.position, this.transform.forward * 50, out hit)) //Se não se o Raycast ter uma mudança de posição para frente multiplicado por 50
         {
-            turning = true;
+            turning = true; //O giro do cardume se tornará verdadeiro
             direction = Vector3.Reflect(this.transform.forward, hit.normal); //Método usado para evitar do cardume de atravessar um objeto no cenário fazendo ele se desviar
         }
         else
-            turning = false;
+            turning = false; //Senão ocorrer a chamada, ficará falso
         
 
-        if (turning)
+        if (turning) //Se girando
         {
-           transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), myManager.rotationSpeed * Time.deltaTime);
+           transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), myManager.rotationSpeed * Time.deltaTime); //Ocorre a suavização do giro
         }
         else
         {
-            if (Random.Range(0, 100) < 10)
-                speed = Random.Range(myManager.minSpeed, myManager.maxSpeed);
-            if(Random.Range(0,100) < 20)
-                ApplyRules();
+            if (Random.Range(0, 100) < 10) //Se o alcançe aleatório entre 0 e 100 for menor que 10
+                speed = Random.Range(myManager.minSpeed, myManager.maxSpeed); //Os cardumes se movimentará aleatoriamente pelo alcance indicado
+            if(Random.Range(0,100) < 20) //Se o alcançe aleatório entre 0 e 100 for menor que 20
+                ApplyRules(); //Ativa o método ApplyRules
         }
         transform.Translate(0, 0, Time.deltaTime * speed); //Mudança da posição de um lugar para outro
     }
