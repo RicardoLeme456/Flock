@@ -6,7 +6,7 @@ public class Flock : MonoBehaviour
 {
     public FlockManager myManager; //Pegando a classe Flock Manager
     public float speed; //Velocidade do objeto
-    bool turning = false; //A concição de que realmente se o peixe esta girando é verdadeiro ou falso
+    bool turning = false; //A condição de que realmente se o peixe esta girando é verdadeiro ou falso
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class Flock : MonoBehaviour
         //O limite ao qual o peixe ira percorrer pela área fazendo ele andar até um certo ponto e depois retorna ao ponto central
         Bounds b = new Bounds(myManager.transform.position, myManager.swinLimits * 2);
 
-        RaycastHit hit = new RaycastHit();
+        RaycastHit hit = new RaycastHit(); //O raio a ser atingido
         Vector3 direction = myManager.transform.position - transform.position;
 
         if (!b.Contains(transform.position))
